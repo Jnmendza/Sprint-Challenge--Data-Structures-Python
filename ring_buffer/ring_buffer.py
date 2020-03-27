@@ -1,6 +1,25 @@
 from doubly_linked_list import DoublyLinkedList
 
 
+# when the ring buffer is full and a new element is added,
+# the oldest element in the ring is overwritten with the new element
+
+# buffer size is 4 and you insert ten numbers
+# insert one at a time, at the end of the buffer
+# each iteration, the first element is removed from the front of the buffer
+'''
+[None, None, None, 0]
+[None, None, 0, 1]
+[None, 0, 1, 2]
+[0, 1, 2, 3]
+[1, 2, 3, 4]
+[2, 3, 4, 5]
+[3, 4, 5, 6]
+[4, 5, 6, 7]
+[5, 6, 7, 8]
+[6, 7, 8, 9]
+'''
+
 class RingBuffer:
     def __init__(self, capacity):
         self.capacity = capacity
@@ -9,7 +28,20 @@ class RingBuffer:
 
     # Append method will add elements to the buffer
     def append(self, item):
-        pass
+        # check to see if capacity is full
+        if self.capacity > self.storage.length:
+            # if capacity isn't full then add the item to the tail
+            self.storage.add_to_tail(item)
+            self.current = self.storage
+
+        # if capacity is full
+        elif self.capacity == self.storage.length:
+            self.current.value = item
+            # add new item where the old item was
+            if self.current == self.storage.tail:
+                self.current = self.storage.head
+            else:
+                self.current = self.current.next
 
     def get(self):
         # Note:  This is the only [] allowed
@@ -18,6 +50,7 @@ class RingBuffer:
         # TODO: Your code here
 
         return list_buffer_contents
+
 
 # ----------------Stretch Goal-------------------
 
