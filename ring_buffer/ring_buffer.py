@@ -70,12 +70,12 @@ class RingBuffer:
 # ----------------Stretch Goal-------------------
 
 
-class ArrayRingBuffer:
-    def __init__(self, capacity):
-        pass
-
-    def append(self, item):
-        pass
-
-    def get(self):
-        pass
+# class ArrayRingBuffer:
+#     def __init__(self, capacity):
+#         pass
+#
+#     def append(self, item):
+#         pass
+#
+#     def get(self):
+#         pass
